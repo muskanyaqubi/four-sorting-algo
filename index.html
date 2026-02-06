@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+        }
+
+        .algorithm {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .algorithm:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .algorithm:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        pre {
+            background: #2d2d2d;
+            border-radius: 6px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #f8f8f2;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            main {
+                padding: 1.5rem;
+            }
+            
+            .algorithm {
+                padding: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            pre {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Insertion Sort Section -->
+        <div id="insertion-sort" class="algorithm">
+            <h2>Insertion Sort</h2>
+            <p>
+                Insertion sort is a simple sorting algorithm that builds the sorted
+                array one item at a time. It is much like sorting playing cards in
+                your hands.
+            </p>
+            <pre><code class="language-javascript">// Insertion Sort Implementation
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+    return arr;
+}</code></pre>
+        </div>
+
+        <!-- Selection Sort Section -->
+        <div id="selection-sort" class="algorithm">
+            <h2>Selection Sort</h2>
+            <p>
+                Selection sort is a simple algorithm that repeatedly selects the smallest element from the unsorted portion and places it in the sorted portion.
+            </p>
+            <pre><code class="language-javascript">// Selection Sort Implementation
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+    return arr;
+}</code></pre>
+        </div>
+
+        <!-- Merge Sort Section -->
+        <div id="merge-sort" class="algorithm">
+            <h2>Merge Sort</h2>
+            <p>
+                Merge sort is a divide-and-conquer algorithm that splits the array into halves, recursively sorts them, and then merges the sorted halves.
+            </p>
+            <pre><code class="language-javascript">// Merge Sort Implementation
+function mergeSort(arr) {
+    if (arr.length <= 1) return arr;
+
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}</code></pre>
+        </div>
+
+        <!-- Quick Sort Section -->
+        <div id="quick-sort" class="algorithm">
+            <h2>Quick Sort</h2>
+            <p>
+                Quick sort is a divide-and-conquer algorithm that selects a pivot element, partitions the array around the pivot, and recursively sorts the partitions.
+            </p>
+            <pre><code class="language-javascript">// Quick Sort Implementation
+function quickSort(arr) {
+    if (arr.length <= 1) return arr;
+
+    const pivot = arr[arr.length - 1];
+    const left = [];
+    const right = [];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}</code></pre>
+        </div>
+    </main>
+</body>
+</html>
